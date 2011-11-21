@@ -1,0 +1,55 @@
+$def with (results, home)
+<?xml version="1.0" encoding="UTF-8"?>
+<SnomIPPhoneDirectory>
+<Title>Menu</Title>
+$ printed=False
+$for entry in results:
+	$if entry['tipo'] == "amministrazione":
+		$if entry['telephoneNumberResp']:
+			$ printed = True
+			<DirectoryEntry>
+			<Name>$entry['titoloResp'] $entry['cognomeResp'] $entry['nomeResp']</Name>
+			<Telephone>$entry['telephoneNumberResp']</Telephone>
+			</DirectoryEntry>
+
+		$if entry['telephoneNumber']:
+			$ printed = True
+			<DirectoryEntry>
+			<Name>$entry['description']</Name>
+			<Telephone>$entry['telephoneNumber']</Telephone>
+			</DirectoryEntry>
+
+		$if len(entry['servizi']) > 0:
+			$for nome_servizio in entry['servizi']:
+				$ printed = True
+				<DirectoryEntry>
+				<Name>$nome_servizio</Name>
+				<Telephone>$entry['servizi'][nome_servizio]['telephonenumber']</Telephone>
+				</DirectoryEntry>
+
+	$elif entry['tipo'] == "ufficio":
+		$if entry['telephoneNumber']:
+			$ printed = True
+			<DirectoryEntry>
+			<Name>$entry['description'] $entry['cognomeResp'] $entry['nomeResp']</Name>
+			<Telephone>$entry['telephoneNumber']</Telephone>
+			</DirectoryEntry>
+
+	$elif entry['tipo'] == "aoo":
+		$if entry['telephoneNumberResp']:
+			$ printed = True
+			<DirectoryEntry>
+			<Name>$entry['titoloResp'] $entry['cognomeResp'] $entry['nomeResp']</Name>
+			<Telephone>$entry['telephoneNumberResp']</Telephone>
+			</DirectoryEntry>
+
+$if printed == False:
+	<DirectoryEntry>
+	<Name>Nessun numero</Name>
+	</DirectoryEntry>
+ <SoftKeyItem>
+  <Name>F3</Name>
+  <Label>Home</Label>
+  <URL>$home</URL>
+ </SoftKeyItem>
+</SnomIPPhoneDirectory>
