@@ -42,6 +42,12 @@ $for entry in results:
 			<Name>$entry['titoloResp'] $entry['cognomeResp'] $entry['nomeResp']</Name>
 			<Telephone>$entry['telephoneNumberResp']</Telephone>
 			</DirectoryEntry>
+		$if entry['telephoneNumber']:
+			$ printed = True
+			<DirectoryEntry>
+			<Name>$entry['description']</Name>
+			<Telephone>$entry['telephoneNumber']</Telephone>
+			</DirectoryEntry>
 
 $if printed == False:
 	<DirectoryEntry>

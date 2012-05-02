@@ -44,7 +44,7 @@ class SearchForm:
 		# q parameter:
 		if user_data['q'] != "":
 			data = urllib.quote(user_data['q'])
-			path = "/advanced-search?tipo=ufficio&tipo=amministrazione&description=" + data + "&nomeResp=" + data + "&cognomeResp=" + data + "&descrizioneS=" + data + "&nomeS=" + data
+			path = "/advanced-search?description=" + data + "&nomeResp=" + data + "&cognomeResp=" + data + "&descrizioneS=" + data + "&nomeS=" + data
 			target = urlparse(config.iPA4uri+path)
 			response, content = h.request(target.geturl(), method, body, config.headers)
 			json_content = json.loads(content)

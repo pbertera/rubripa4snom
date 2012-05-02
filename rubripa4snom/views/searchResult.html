@@ -11,6 +11,9 @@ $for entry in results:
     $elif entry['tipo'] == "ufficio":
         <Name>Uff. $(entry["description"])</Name>
         <URL>$(home)?dn=$entry["dn"]</URL>
+    $elif entry['tipo'] == "aoo":
+        <Name>Aoo. $(entry["description"])</Name>
+        <URL>$(home)?dn=$entry["dn"]</URL>
     </MenuItem>
 <SoftKeyItem>
  <Name>F3</Name>
